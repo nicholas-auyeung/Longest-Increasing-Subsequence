@@ -1,42 +1,58 @@
 package lis;
 
-//algorithm and implementation was referenced from GeeksforGeeks
+//algorithm and implementation was referenced from GeeksforGeeks, contributed by Rajat Mishra
 
+import java.util.Random;
 
 class LIS {
 	static int lenMaxSubseq;
-	
+
 	static int findMaxSubseq(int[] arr, int lenArr) {
-		
-		if(lenArr == 1) {
+
+		// base case
+		if (lenArr == 1) {
+
 			return 1;
 		}
-		int result, endingMaxSeq = 1;
-		for(int i = 1; i < lenArr; i++) {
+
+		int result, recursLenSubseq = 1;
+
+		// recursively calculates the LIS from the beginning of the array to each index
+		for (int i = 1; i < lenArr; i++) {
+
 			result = findMaxSubseq(arr, i);
-			if(arr[i - 1] < arr[lenArr - 1] && result + 1 > endingMaxSeq) {
-				endingMaxSeq = result + 1;
+			if (arr[i - 1] < arr[lenArr - 1] && result + 1 > recursLenSubseq) {
+				recursLenSubseq = result + 1;
 			}
 		}
 		
-		if(lenMaxSubseq < endingMaxSeq) {
-			lenMaxSubseq = endingMaxSeq;
+		//compare current recurse LIS with the current recorded largest LIS
+		if (lenMaxSubseq < recursLenSubseq) {
+
+			lenMaxSubseq = recursLenSubseq;
 		}
-		
-		return endingMaxSeq;
-		
+
+		return recursLenSubseq;
+
 	}
-	
-	static int wrapperList(int[] arr, int lenArr) {
+
+	static int wrapperFindMaxSubseq(int[] arr, int lenArr) {
 		lenMaxSubseq = 1;
 		findMaxSubseq(arr, lenArr);
 		return lenMaxSubseq;
 	}
-	
+
+	// main call, populates int array of size 10 with randomly generated ints
 	public static void main(String[] args) {
-		int arr[] = { 10, 22, 9, 33, 21, 50, 41, 60 }; 
-        int n = arr.length; 
-        System.out.println("Length of lis is "
-                           + wrapperList(arr, n) + "\n"); 
+		Random rd = new Random();
+		int[] arr = new int[10];
+		System.out.println("Longest Increasing Subsequence" + "\n");
+		System.out.println("Random Array of Ints");
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = rd.nextInt(10000);
+			System.out.println((i + 1) + ": " + arr[i]);
+		}
+		int n = arr.length;
+		System.out.println("\n" + "Length of LIS is " + wrapperFindMaxSubseq(arr, n));
 	}
- } 
+}
