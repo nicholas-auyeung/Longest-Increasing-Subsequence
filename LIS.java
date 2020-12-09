@@ -1,6 +1,6 @@
 package lis;
 
-//algorithm and implementation was referenced from GeeksforGeeks, contributed by Rajat Mishra
+//algorithm and implementation was adapted from GeeksforGeeks, contributed by Rajat Mishra
 
 import java.util.Random;
 

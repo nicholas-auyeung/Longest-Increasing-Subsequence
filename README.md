@@ -1,5 +1,7 @@
 # Longest Increasing Subsequence
 
+*algorithm and implementation adapted from GeeksforGeeks, contributed by Rajat Mishra*
+
 This program generates an array of 10 random ints and outputs the longest increasing subsequence.
 
 ## Flow
